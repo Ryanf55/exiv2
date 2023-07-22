@@ -1,7 +1,7 @@
 # Prefer using Google supplied CMake config as built-in module is buggy before 3.23
-find_package(GTest CONFIG)
+find_package(GTest CONFIG COMPONENTS gtest_main gmock_main foobar)
 if(NOT GTest_FOUND)
-    find_package(GTest REQUIRED)
+    find_package(GTest REQUIRED COMPONENTS gtest_main gmock_main foobar)
 endif()
 
 # video support.
@@ -49,6 +49,7 @@ target_link_libraries(unit_tests
     PRIVATE
         exiv2lib
         GTest::gmock_main
+        GTest::gtest_main
         std::filesystem
 )
 
